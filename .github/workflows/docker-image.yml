@@ -5,7 +5,9 @@ on:
 
 jobs:
   docker:
-    runs-on: ubuntu-latest
+    runs-on:
+      - self-hosted
+      - docker
     steps:
       -
         name: Checkout
@@ -23,3 +25,7 @@ jobs:
           context: .
           push: false
           tags: jjzi/hello-action:0.1
+      -
+        name: Run built image
+        run: |
+          docker run --rm jjzi/hello-action:0.1
